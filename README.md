@@ -1,4 +1,4 @@
-# argocd-configurations
+## Argocd-configurations
 
 ## ArgoCD OPI - Multicluster Configuration
 
@@ -55,3 +55,25 @@ spec:
     targetRevision: master
   syncPolicy:
     automated: {}
+
+kubectl apply -f cluster.yaml
+kubectl get all -n argocd
+
+### Create a service account yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: argocd-manager
+  namespace: argocd
+**secrets: argocd-manager-token**
+
+### Argocd Create a secret
+apiVersion: v1
+kind: Secret
+metadata:
+  annotations:
+    **kubernetes.io/service-account.name: argocd-manager**
+  name: arogcd-manager-token
+  namespace: argocd
+type: kubernetes.io/service-account-token
+
