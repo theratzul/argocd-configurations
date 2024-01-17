@@ -36,3 +36,20 @@ argocd cluster add **context-name** --name **cluster-name**
 argocd cluster list
 
 ### Until you deploy any application the cluster will remain in unkown state in GUI
+### Change the application cluster and project in GUI and Sync
+
+### update cluster creation context yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: local-server-guest-app
+spec:
+  destination:
+    name: aaks
+  project: default
+  source:
+    path: helm-guestbook
+    repoURL: https://github.com/argocd/examples
+    targetRevision: master
+  syncPolicy:
+    automated: {}
