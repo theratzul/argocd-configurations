@@ -25,3 +25,10 @@ watch kubectl --context east -n test-namespace get all
 ### Create pod from scratch to run with NginX
 kubectl run nginx --image=nginx --dry-run=client -o yaml > pod.yaml
 ### in pod.yaml add under name: nginx entry namespace: test-namespace
+
+### Login to argocd binary and create the cluster
+argocd login argocd-ip:port(443) --username
+argocd app list
+argocd cluster list
+
+
