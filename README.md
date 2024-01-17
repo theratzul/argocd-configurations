@@ -26,9 +26,13 @@ watch kubectl --context east -n test-namespace get all
 kubectl run nginx --image=nginx --dry-run=client -o yaml > pod.yaml
 ### in pod.yaml add under name: nginx entry namespace: test-namespace
 
-### Login to argocd binary and create the cluster
+### Login to argocd binary and list
 argocd login argocd-ip:port(443) --username
 argocd app list
 argocd cluster list
 
+### Create the cluster
+argocd cluster add **context-name** --name **cluster-name**
+argocd cluster list
 
+### Until you deploy any application the cluster will remain in unkown state in GUI
