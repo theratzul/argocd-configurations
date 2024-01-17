@@ -1,6 +1,6 @@
 # argocd-configurations
 
-## Multicluster Configuration
+## ArgoCD OPI - Multicluster Configuration
 
 gcloud container clusters list
 ### get the master node of cluster/try this command on every cluster
@@ -18,4 +18,10 @@ kubectl config rename-context gke-xyz new-name
 kubectl config get-contexts
 ### See the new context
 
+### Monitor context with watch in 2 windows
+watch kubectl --context west -n test-namespace get all
+watch kubectl --context east -n test-namespace get all
 
+### Create pod from scratch to run with NginX
+kubectl run nginx --image=nginx --dry-run=client -o yaml > pod.yaml
+### in pod.yaml add under name: nginx entry namespace: test-namespace
