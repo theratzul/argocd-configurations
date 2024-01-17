@@ -39,6 +39,8 @@ argocd cluster list
 ### Change the application cluster and project in GUI and Sync
 
 ### update cluster creation context yaml
+kubectl get ns
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
